@@ -1,0 +1,61 @@
+<html>
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>Сунагатов И.Р. ПИ-321</title>
+ <link rel="stylesheet" href="mystyle.css" type="text/css"/> 
+<style>
+  img{
+    position: absolute;
+    background-color: #abc;
+    left: 50px;
+    width: 200px;
+    height: 200px;
+    margin: 5px;
+  }
+  </style>
+    <script type="text/javascript" src="libs/jquery-3.6.0.min.js"></script>
+ </head>
+ <body>
+
+  
+  
+  <button id = "but_up"> Вверх</button>
+  <button id = "but_down"> Вниз</button>
+  <button id = "but_left"> Влево</button>
+  <button id = "but_right"> Вправо</button>
+  <p></p>
+ <img src="images/les.jpg" alt="" id="les" class="lis" >
+ 
+
+ <script type="text/javascript">
+
+$(document).ready(function(){
+
+$('#but_down').on('click', function(){
+ $( ".lis" ).animate({"bottom": "-=100px" }, 1500 );
+
+});
+
+$('#but_up').on('click', function(){
+ $( ".lis" ).animate({"bottom": "+=100px" }, 1500 );
+
+});
+
+$('#but_left').on('click', function(){
+ $( ".lis" ).animate({"left": "-=100px" }, 1500 );
+
+});
+
+$('#but_right').on('click', function(){
+ $( ".lis" ).animate({"left": "+=100px" }, 1500 );
+
+});
+});
+
+ </script>
+ 
+   
+   
+
+ </body>
+</html>

@@ -1,0 +1,30 @@
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Сунагатов И.Р. ПИ-321</title>
+</head>
+<body>
+<script language="JavaScript" type="text/JavaScript">
+
+var x, y, pass, enter;
+
+pass="admin";
+//enter=promt("Введите пароль (admin):",'');
+enter=prompt("Введите пароль(admin)",'');
+if(enter==pass){
+let z=alert("Пароль верен");
+x=parseInt(prompt("Введите значение х",'')); // метод parseInt() переводит строку в целое
+y=parseInt(prompt("Введите значение у",'')); // число
+if(x<y){
+alert(" Максимальное число - y");
+}else if(x==y){
+alert(" Числа равны");
+}else{
+alert(" Максимальное число - x");
+}
+}else{
+alert("Пароль неверен");
+}
+</script>
+</body>
+</html> 
