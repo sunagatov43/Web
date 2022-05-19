@@ -1,0 +1,152 @@
+<html>
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>Сунагатов И.Р., ПИ-321</title>
+
+<style>
+fieldset.gen2 {
+  background-color: #F5DEB3;
+  font-size:24px; 
+  padding:10px; 
+  width:550px;
+position: relative;
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+
+}
+fieldset.gen {
+  background-color: #F5DEB3;
+  font-size:24px; 
+  padding:10px; 
+  width:550px;
+position: relative;
+    top: 0%;
+    left: 50%;
+    transform: translateX(-50%);
+	 
+}
+button.fin {
+padding:6px;
+margin: 10px;
+ position: relative;
+left: 24%;
+transform: translate(-50%, 0);
+}
+
+fieldset.com {
+   background-color: #D2B48C;
+  font-size:16px; 
+  padding:22px; 
+}
+fieldset.com2 {
+   background-color: #D2B48C;
+  font-size:16px; 
+  padding:22px; 
+}
+
+fieldset.f {
+margin: 10px;
+  background-color: #FFF8DC;
+  font-size:16px; 
+  padding:18px; 
+}
+
+legend.leg {
+  background-color: #000000;
+  color: #A9A9A9;
+  padding: 5px 10px;
+  font-size:24px; 
+}
+
+input {
+  margin: 5px;
+}
+
+
+ </style>
+ <script type="text/javascript" src="libs/jquery-3.6.0.min.js"></script>
+ </head>
+ <body bgcolor="#DCDCDC">
+ 
+<fieldset class="gen">
+<fieldset class="com">
+<legend align="center" class="leg">ЗАПИСАТЬ ОТЗЫВ</legend>
+
+    <p><b>Ваше имя:</b><br>
+   <input type="text" size="40" id="name">
+     <p><b>Ваш email:</b><br>
+   <input type="text" size="40" id="email">
+     <p><b>Cообщение:</b><br>
+  <textarea id="mess" name="message"
+  style="padding-bottom:250px ;
+  font-size:16px;
+  height: 220px;
+  width: 324px;" ></textarea>
+
+</fieldset>
+  <button id='finish' class="fin">Отправить</button>
+</fieldset>
+
+<fieldset class="gen2">
+<fieldset class="com2">
+<legend align="center" class="leg">ОТЗЫВЫ</legend>
+
+
+</fieldset>
+</fieldset>
+ <script>
+
+$(document).ready(function(){
+var name="";
+var email="";
+var mess="";
+var ids=0;
+
+$.ajax({
+        type: "GET",
+        url: "getdata_3b.php"
+			}).done(function( data )
+				{
+
+					let obj = JSON.parse(data)
+					for (var q = 0; q < obj.names.length; q++) {  
+						$('.com2').prepend("<fieldset class='f' id='f1'>  <h2 id=h"+ids+" class='gg'>Заголовок</h2> <p id=p"+ids+"></p>  </fieldset>");
+						$( "#h"+ids ).text(obj.names[q]);
+						$( "#p"+ids ).text(obj.messages[q]);
+						ids++;
+						
+					}
+				});
+
+
+$('#finish').on('click', function(){ 
+	name=$("#name").val();
+	email=$("#email").val();
+	mess=$("#mess").val();
+	const namej = JSON.stringify(name);
+	const emailj = JSON.stringify(email);
+	const messj = JSON.stringify(mess);
+
+	$.ajax({
+        type: "GET",
+        url: "setdata_3b.php",
+        data: {sname:namej, semail:emailj, smess:messj}
+    }).done(function( data )
+        {
+			alert( "ЛОГ: " + data );
+			$("#name").val('');
+			$("#email").val('');
+			$("#mess").val('');
+        });
+		
+});
+});
+
+ </script>
+ 
+   
+   
+
+ </body>
+</html>

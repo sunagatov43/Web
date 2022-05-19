@@ -1,0 +1,125 @@
+<html>
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>Сунагатов И.Р., ПИ-321</title>
+
+<style>
+fieldset.gen {
+  background-color: #696969;
+  font-size:24px; 
+  padding:10px; 
+  width:750px;
+position: absolute;
+    top: 0%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+button.fin {
+padding:6px;
+margin: 10px;
+ position: relative;
+left: 90%;
+transform: translate(-50%, 0);
+}
+
+fieldset.com {
+   background-color:#FFDEAD;
+  font-size:16px; 
+  padding:22px; 
+}
+
+fieldset.f {
+margin: 10px;
+  background-color: #FFF8DC;
+  font-size:16px; 
+  padding:18px; 
+}
+
+legend.leg {
+  background-color: #000000;
+  color: #A9A9A9;
+  padding: 5px 10px;
+  font-size:24px; 
+}
+
+input {
+  margin: 5px;
+}
+
+
+ </style>
+ <script type="text/javascript" src="libs/jquery-3.6.0.min.js"></script>
+ </head>
+ <body bgcolor="#DCDCDC">
+ 
+<fieldset class="gen">
+<fieldset class="com">
+<legend align="center" class="leg">НОВОСТИ</legend>
+
+</fieldset>
+  <button id='finish' class="fin">Загрузить еще</button>
+</fieldset>
+ <script>
+
+$(document).ready(function(){
+$( "<p>Это новый параграф</p>" );
+	let k=0;
+	var cloneCount = 0;
+	var i = 0;
+	var tekush=0;
+	var ids=0;
+	var krug=5;
+	var need=5;
+	
+	$.ajax({
+        type: "GET",
+        url: "getdata_3.php",
+        data: {ftekush:tekush, fneed:need}
+			}).done(function( data )
+				{
+					const myJSON = JSON.stringify(data);
+					let obj = JSON.parse(data)
+					for (var q = 0; q < need; q++) {  
+						$('.com').append("<fieldset class='f' id='f1'>  <h2 id=h"+ids+" class='gg'>Заголовок</h2> <p id=p"+ids+"></p> <img class='n' id=img"+ids+" width='700' height='500'  alt='1'> </fieldset>");
+						$( "#h"+ids ).text(obj.header[q]);
+						$( "#p"+ids ).text(obj.desc[q]);
+						$("#img"+ids).prop('src', "images/"+obj.img[q]);
+						ids++;
+					}
+				});
+	
+
+
+$('#finish').on('click', function(){ /// press button
+	tekush = tekush+need;
+	$.ajax({
+        type: "GET",
+        url: "getdata_3.php",
+        data: {ftekush:tekush, fneed:need}
+    }).done(function( data )
+        {
+			const myJSON = JSON.stringify(data);
+			let obj = JSON.parse(data)
+			for (var q = 0; q < need; q++) {
+				ids++;
+				if(obj.header[q]!=null){
+					$('.com').append("<fieldset class='f' id='f1'>  <h2 id=h"+ids+" class='gg'>Заголовок</h2> <p id=p"+ids+"></p> <img class='n' id=img"+ids+" width='700' height='500'  alt='1'> </fieldset>");
+					$( "#h"+ids ).text(obj.header[q]);
+					$( "#p"+ids ).text(obj.desc[q]);
+					$("#img"+ids).prop('src', "images/"+obj.img[q]);
+				}else{
+					$( "#finish" ).text("Новостей больше нет");
+				}
+			}
+        });
+		
+});
+});
+
+ </script>
+ 
+   
+   
+
+ </body>
+</html>
