@@ -1,0 +1,423 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Сунагатов И.Р. ПИ-321</title>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+  <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+  <script>
+  var arrM=[
+   'Январь',
+   'Февраль',
+   'Март',
+   'Апрель',
+   'Май',
+   'Июнь',
+   'Июль',
+   'Август',
+   'Сентябрь',
+   'Ноябрь',
+   'Декабрь'
+];
+
+   availableTags1 = [
+	  "Уфа",
+      "Дема",
+      "Чишмы-восточные",
+      "Чишмы-1",
+	  "Буздяк",
+      "Кандры",
+      "Туймазы",
+      "Уруссу",
+      "Бугульма",
+      "Клявлино",
+      "Шентала",
+      "Челна",
+      "Нурлат",
+      "Димитровград",
+      "Чердаклы",
+      "Ульяновск",
+      "Инза",
+      "Торбеево",
+      "Шилово",
+	  "Рязань",
+      "Москва"
+    ];
+	
+	
+  $( function() {
+	 $( "#tabs" ).tabs();
+	 
+    $( "#tags" ).autocomplete({
+      source: availableTags1
+    });
+	$( "#tags2" ).autocomplete({
+      source: availableTags1
+    });
+	
+	
+	
+ $( "#datepicker" ).datepicker({
+	monthNames: [ "Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь" ],
+	monthNamesShort: [ "Января", "Февраля", "Марта", "Апреля", "Мая", "Июня", "Июля", "Августа", "Сентября", "Октября", "Ноября", "Декабря"],
+	dayNamesMin: ["вс", "пн", "вт", "ср", "чт", "пт", "сб"],
+	firstDay: 1,
+	dateFormat: "dd M" 
+ 
+	});
+
+	
+});
+  </script>
+  
+<style>
+	fieldset.gen {
+	background-color: #B0E0E6;
+	font-size:16px; 
+	padding:10px; 
+	width:810px;
+	position: relative;
+    top: 0%;
+    left: 50%;
+    transform: translateX(-50%);
+	}
+	fieldset.t1gen {
+	background-color: #B0E0E6;
+	font-size:16px; 
+	padding:10px; 
+	width:810px;
+	position: relative;
+    top: 0%;
+    left: 50%;
+    transform: translateX(-50%);
+
+	
+	
+	}
+	
+
+fieldset.com {
+	background-color: #B0E0E6;
+	font-size:16px; 
+	padding:22px; 
+	border:0; 
+	
+	}
+li{
+
+}
+ .toggler { width: 500px; height: 200px; position: relative; }
+    #button { padding: .5em 1em; text-decoration: none; }
+    #effect { width: 240px; height: 170px; padding: 0.4em; position: relative; }
+    #effect h3 { margin: 0; padding: 0.4em; text-align: center; }
+	
+    fieldset.div { padding:0; border:0; margin-top:25px; }
+    h1 { font-size: 1.2em; margin: .6em 0; }
+    div#users-contain { width: 550px; margin: 20px 0; }
+    div#users-contain table { margin: 1em 0; border-collapse: collapse; width: 100%; }
+    div#users-contain table td, div#users-contain table th { border: 1px solid #eee; padding: .6em 10px; text-align: left; }
+    .ui-dialog .ui-state-error { padding: .3em; }
+    .validateTips { border: 1px solid transparent; padding: 0.3em; }
+  
+</style>
+
+</head>
+<body bgcolor="#FFFFF" background="images/ele.jpg">
+
+
+<fieldset class="gen">
+	<div id="tabs">
+		<ul>
+			<li id="t1"><a href="#tabs-1">Межгородные поезда</a></li>
+		</ul>
+		<div id="tabs-1">
+			<div class="widget">
+				<div class="ui-widget">
+					<input id="tags" size="26"> 
+					<input id="tags2" size="26"> 
+					<input type="text" id="datepicker" size="14">
+					<button id="find">Найти</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</fieldset>
+
+<div id="dialog-form" title="Купить Ж\Д билет">
+	<p id="vd" class="validateTips">  </p>
+	<form>
+		<fieldset class="div">
+			<label for="amount">Укажите количество билетов:</label>
+			<input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;" value=1>
+			<div id="slider-range-max"></div>
+			<br>
+			<div class="widget">
+				<fieldset class="div">
+					<legend>Выберите тип вагона </legend>
+					<label for="radio-1">Плацкарт</label>
+					<input class="r" type="radio" name="radio-1" id="radio-1" value="plac" checked="checked">
+					<label for="radio-2">Купе</label>
+					<input class="r" type="radio" name="radio-1" id="radio-2" value="cupe">	
+				</fieldset>
+			</div>
+			<input type="text" readonly id="result" title="Будет известно, когда выберети тип вагона и количество мест" >
+			<!-- Allow form submission with keyboard without duplicating the dialog button -->
+			<input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
+		</fieldset>
+	</form>
+</div>
+
+<div id="dialog-confirm" title="Оформить заказ?">
+	<p><span  class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>Совершая заказ Вы подтверждаете согласие с условиями нашего договора-оферты</p>
+</div>
+
+<div id="dialog-message" title="Заказ оформлен">
+	<p>
+		<span class="ui-icon ui-icon-circle-check" style="float:left; margin:0 7px 50px 0;"></span>
+		Спасибо за Ваш заказ
+	</p>
+</div>
+<script>
+
+$(document).ready(function(){
+var frint=0;
+var toint=0;
+var price=0;
+var frh;
+var toh;
+var fr_h, fr_m, fr_s;
+var to_h, to_m, to_s;
+var frm, tom;
+var today=new Date;
+var rnd=1;
+var result=0;
+var kf=1;
+var kol=1;
+
+$("#dialog-confirm").hide();  // hide
+$("#dialog-message").hide();  // hide
+
+var dialog, form,
+      emailRegex = /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/,
+      name = $( "#name" ),
+      email = $( "#email" ),
+      password = $( "#password" ),
+      allFields = $( [] ).add( name ).add( email ).add( password ),
+      tips = $( ".validateTips" );
+ 
+    function updateTips( t ) {
+      tips
+        .text( t )
+        .addClass( "ui-state-highlight" );
+      setTimeout(function() {
+        tips.removeClass( "ui-state-highlight", 1500 );
+      }, 500 );
+    }
+ 
+    function checkLength( o, n, min, max ) {
+      if ( o.val().length > max || o.val().length < min ) {
+        o.addClass( "ui-state-error" );
+        updateTips( "Length of " + n + " must be between " +
+          min + " and " + max + "." );
+        return false;
+      } else {
+        return true;
+      }
+    }
+ 
+    function checkRegexp( o, regexp, n ) {
+      if ( !( regexp.test( o.val() ) ) ) {
+        o.addClass( "ui-state-error" );
+        updateTips( n );
+        return false;
+      } else {
+        return true;
+      }
+    }
+ 
+    function addUser() {
+      var valid = true;
+      allFields.removeClass( "ui-state-error" );
+        dialog.dialog( "close" );
+	  $( "#dialog-confirm" ).dialog({
+      resizable: false,
+      height: "auto",
+      width: 400,
+      modal: true,
+      buttons: {
+        "Согласен(а)": function() {
+          $( this ).dialog( "close" );
+		  $( "#dialog-message" ).dialog({
+      modal: true,
+      buttons: {
+        "Ок": function() {
+          $( this ).dialog( "close" );
+        }
+      }
+    });
+        },
+        "Не согласен(а)": function() {
+          $( this ).dialog( "close" );
+        }
+      }
+    });
+      return valid;
+    }
+ 
+    dialog = $( "#dialog-form" ).dialog({
+      autoOpen: false,
+      height: 400,
+      width: 350,
+      modal: true,
+      buttons: {
+        "Оформить заказ": addUser,
+        "Закрыть": function() {
+          dialog.dialog( "close" );
+        }
+      },
+      close: function() {
+        form[ 0 ].reset();
+        allFields.removeClass( "ui-state-error" );
+      }
+    });
+ 
+    form = dialog.find( "form" ).on( "submit", function( event ) {
+      event.preventDefault();
+      addUser();
+    });
+ 
+    
+
+	function check(arr, elem) {
+		for (var i = 0; i < arr.length; i++) {
+			if (arr[i] === elem) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	function get_index(arr, elem) {
+		for (var i = 0; i < arr.length; i++) {
+			if (arr[i] === elem) {
+			
+				return i;
+			}
+		}
+		return 0;
+	}
+	
+	$('#find').on('click', function(){ 
+	
+		rnd=$("#datepicker").val().substr(0, 2);
+		today.setMinutes(today.getMinutes()+rnd*12);
+		var frdate=new Date;
+		var todate=new Date;
+		
+		frdate.setDate(rnd);
+		todate.setDate(rnd);
+		price=0;
+		$('.t1gen').remove();
+	
+		$("#tags").val($("#tags").val().toLowerCase());
+		$("#tags").val($("#tags").val().charAt(0).toUpperCase() + $("#tags").val().slice(1));
+	
+		$("#tags2").val($("#tags2").val().toLowerCase());
+		$("#tags2").val($("#tags2").val().charAt(0).toUpperCase() + $("#tags2").val().slice(1));
+	
+		var fr=$("#tags").val();
+		var to=$("#tags2").val();
+	
+		frint=get_index(availableTags1,fr);
+		toint=get_index(availableTags1,to);
+		
+		if(frint<toint){
+			price=(toint-frint)*300;
+			frm=frint*1.32*60;
+			tom=toint*1.32*60;
+			frdate.setMinutes(today.getMinutes()+frm);
+			todate.setMinutes(today.getMinutes()+tom);
+		}else{
+			price=(frint-toint)*300;
+			frm=frint*1.32*60;
+			tom=toint*1.32*60;
+			frdate.setMinutes(today.getMinutes()+tom);
+			todate.setMinutes(today.getMinutes()+frm);
+		}
+	
+		var fr_m=frdate.getMonth();
+		var fr_month=arrM[fr_m];
+		var fr_day=frdate.getDate();
+		fr_hour = frdate.getHours().toString().length < 2 ? '0' + frdate.getHours() : frdate.getHours();
+		fr_min = frdate.getMinutes().toString().length < 2 ? '0' + frdate.getMinutes() : frdate.getMinutes();
+		fr_sec = frdate.getSeconds().toString().length < 2 ? '0' + frdate.getSeconds() : frdate.getSeconds();
+		var fr_correct = fr_hour + ':' + fr_min + '  [ '+fr_day +' '+fr_month+' ]';
+	
+		var to_m=todate.getMonth();
+		var to_month=arrM[to_m];
+		var to_day=todate.getDate();
+		to_day=todate.getDate();
+		to_hour = todate.getHours().toString().length < 2 ? '0' + todate.getHours() : todate.getHours();
+		to_min = todate.getMinutes().toString().length < 2 ? '0' + todate.getMinutes() : todate.getMinutes();
+		to_sec = todate.getSeconds().toString().length < 2 ? '0' + todate.getSeconds() : todate.getSeconds();
+		var to_correct = to_hour + ':' + to_min+'  [ '+to_day +' '+to_month+' ]';
+	
+	
+		if(fr!=to){
+			if(check(availableTags1,fr)==true && check(availableTags1,to)==true){	
+				$('body').append("<fieldset class='t1gen' id='f1'> <fieldset class='com'>   <p>"+fr+" - "+to+" </p><p>От: "+price+" рублей</p> <p>Время отправления: "+fr_correct+" </p> <p>Время прибытия: "+to_correct+"  </p> <button id='create-user' >Купить</button> </fieldset> </fieldset> ");
+			}else{
+				$('body').append("<fieldset class='t1gen' id='f1'> <fieldset class='com'>   <center><p>Такой маршрут отсутствует</p> </center>  </fieldset> </fieldset>");
+			}
+		}else{
+			$('body').append("<fieldset class='t1gen' id='f1'> <fieldset class='com'>   <center><p>Такой маршрут отсутствует</p> </center> </fieldset> </fieldset>");
+		}
+		$( "#create-user" ).button().on( "click", function() {
+			$( document ).tooltip();
+			
+			
+			dialog.dialog( "open" );
+			$("#vd").text(fr+" - "+to);
+			$( "#result" ).val( price*kf*kol );
+			$('.r').change(function() {
+				if (this.value == 'plac') {
+					kf=1;
+					$( "#result" ).val( price*kf*kol );
+				}else if (this.value == 'cupe') {
+					kf=2;
+					$( "#result" ).val( price*kf*kol );
+				}
+});
+			$( "#slider-range-max" ).slider({
+				range: "max",
+				min: 1,
+				max: 6,
+				value: 1,
+				slide: function( event, ui ) {
+					$( "#amount" ).val( ui.value );
+					
+				}
+			});
+			$( "#slider-range-max" ).slider({
+				change: function( event, ui ) {
+				kol = $( "#slider-range-max" ).slider( "value" );
+				$( "#result" ).val( price*kf*kol );
+				}
+			});
+			$( ".r" ).checkboxradio({
+				icon: false
+			});
+			result=price*kf*value;
+			alert(value);
+		});
+	
+	 });
+	 
+
+});
+
+ </script>
+</body>
+</html>
